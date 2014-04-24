@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+	<b>Name:</b>
+	<%= @album.name %>
+</p>
+<p>
+	<b>Cover pic:</b>
+	<% if !@album.cover_pic.blank? %>
+	<%= image_tag(@album.cover_pic.first.picture.url) %>
+	<%end%>
+</p>
+Album images:
+<% @album.images_other_than_cover.each do |image| %>
+<p>
+	<% if !image.blank?%>
+	<%= image_tag(image.picture.url) %>
+	<%end%>
+</p>
+<% end %>
+<%= link_to 'Edit', edit_album_path(@album) %> |<%= link_to 'Destroy', @album, method: :delete, data: { confirm: 'Are you sure?' } %>

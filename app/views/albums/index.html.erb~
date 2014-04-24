@@ -1,0 +1,46 @@
+<% @users.each do |user| %>
+    <% user.images.each do |image| %>
+      <div class="img">
+        <img src="<%= image.picture.url %>" alt="Klematis" width="110" height="90">
+        <div class="desc"><%= image.album.user.full_name %></div>
+        <% if user_signed_in?  %>
+          <%= link_to "Create Album", edit_album_path(image.album) %>
+      <% end %>
+      </div>
+    <% end %>
+<% end %>
+
+<% if user_signed_in? %>
+  <%= link_to "Create Album", new_album_path %>
+<% end %>
+
+
+<style>
+div.img
+  {
+  margin:5px;
+  padding: 5px;
+  border:1px solid #0000ff;
+  height:auto;
+  width:auto;
+  float:left;
+  text-align:center;
+  }
+div.img img
+  {
+  display:inline;
+  margin:5px;
+  border:1px solid #ffffff;
+  }
+div.img a:hover img
+  {
+  border:1px solid #0000ff;
+  }
+div.desc
+  {
+  text-align:center;
+  font-weight:normal;
+  width:120px;
+  margin:5px;
+  }
+</style>

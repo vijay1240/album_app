@@ -1,0 +1,47 @@
+<% @users.each do |user| %>
+    <% user.albums.each do |album| %>
+      <div class="img">
+        <a href="<%= album_path(album) %>"><img src="<%= album.cover_pic.first.picture.url rescue nil%>" alt="<%= album.name %>" width="110" height="90">
+        <div class="desc"><%= album.user.full_name %></div>
+        <% if user_signed_in?  %>
+          <%= link_to "Edit Album", edit_album_path(album) %>
+      <% end %></a>
+      </div>
+    <% end %>
+<% end %>
+
+<div class = "desc">
+<% if user_signed_in? %>
+  <%= link_to "Create Album", new_album_path %>
+<% end %>
+</div>
+
+<style>
+div.img
+  {
+  margin:5px;
+  padding: 5px;
+  border:1px solid #0000ff;
+  height:auto;
+  width:auto;
+  float:left;
+  text-align:center;
+  }
+div.img img
+  {
+  display:inline;
+  margin:5px;
+  border:1px solid #ffffff;
+  }
+div.img a:hover img
+  {
+  border:1px solid #0000ff;
+  }
+div.desc
+  {
+  text-align:center;
+  font-weight:normal;
+  width:120px;
+  margin:5px;
+  }
+</style>

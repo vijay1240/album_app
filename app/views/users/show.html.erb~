@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+<p>
+  <% if @user.image.try(:picture) %>
+    <%= image_tag(@user.image.picture.url) %>
+  <% else %>
+    No profile picture.
+  <% end %>
+</p>
+<p>
+  <b>Full name:</b>
+  <%= @user.full_name %>
+</p>
+
+<p>
+  <b>Birthdate:</b>
+  <%= @user.birthdate %>
+</p>
+
+<p>
+  <b>About me:</b>
+  <%= @user.about_me %>
+</p>
+
+
+<%= link_to 'Edit', edit_user_path(@user) %>
+

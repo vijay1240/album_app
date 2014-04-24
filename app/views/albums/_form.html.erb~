@@ -1,0 +1,31 @@
+<%= nested_form_for(@album) do |f| %>
+  <% if @album.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@album.errors.count, "error") %> prohibited this album from being saved:</h2>
+
+      <ul>
+      <% @album.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+  <%= f.fields_for :images do |image_form| %>
+    <%= image_form.label :set_cover_pic %>
+    <%= image_form.radio_button :cover_pic, "0" %>
+    <%= image_form.file_field :picture %>
+    <%= image_form.link_to_remove "Remove this picture" %>
+  <% end %>
+  
+  <p><%= f.link_to_add "Add a picture", :images %></p>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
